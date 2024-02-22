@@ -2,5 +2,9 @@
     <qresource prefix="/">
         <file>Images/Spayglass.ico</file>
         <file>Images/Spayglass128.png</file>
+        <file>Translations/qtbase_uk.qm</file>
+        <file>Images/eye_icon.png</file>
+        <file>Images/file_open_icon.png</file>
+        <file>Images/database_settings.png</file>
     </qresource>
 </RCC>
