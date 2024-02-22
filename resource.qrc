@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/">
+        <file>Images/Spayglass.ico</file>
+        <file>Images/Spayglass128.png</file>
+    </qresource>
+</RCC>
