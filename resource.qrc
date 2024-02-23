@@ -6,5 +6,8 @@
         <file>Images/eye_icon.png</file>
         <file>Images/file_open_icon.png</file>
         <file>Images/database_settings.png</file>
+        <file>QML/QmlMap.qml</file>
+        <file>Images/3d-map.png</file>
+        <file>Images/marker_UN.png</file>
     </qresource>
 </RCC>
