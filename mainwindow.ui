@@ -15,19 +15,17 @@
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout_2" columnstretch="1,0" columnminimumwidth="0,1">
-    <item row="0" column="0">
-     <widget class="QQuickWidget" name="quickWidgetMap">
-      <property name="resizeMode">
-       <enum>QQuickWidget::SizeRootObjectToView</enum>
-      </property>
-      <property name="source">
-       <url>
-        <string>qrc:/QML/QmlMap.qml</string>
-       </url>
+    <item row="2" column="1">
+     <widget class="QPushButton" name="pushButton">
+      <property name="text">
+       <string>PushButton</string>
       </property>
      </widget>
     </item>
     <item row="0" column="1">
+     <widget class="QLineEdit" name="lineEdit"/>
+    </item>
+    <item row="3" column="1">
      <widget class="QGroupBox" name="groupBox">
       <property name="title">
        <string>GroupBox</string>
@@ -37,6 +35,21 @@
         <widget class="QListView" name="listView"/>
        </item>
       </layout>
+     </widget>
+    </item>
+    <item row="1" column="1">
+     <widget class="QLineEdit" name="lineEdit_2"/>
+    </item>
+    <item row="0" column="0" rowspan="4">
+     <widget class="QQuickWidget" name="quickWidgetMap">
+      <property name="resizeMode">
+       <enum>QQuickWidget::SizeRootObjectToView</enum>
+      </property>
+      <property name="source">
+       <url>
+        <string>qrc:/QML/QmlMap.qml</string>
+       </url>
+      </property>
      </widget>
     </item>
    </layout>
