@@ -9,5 +9,7 @@
         <file>QML/QmlMap.qml</file>
         <file>Images/3d-map.png</file>
         <file>Images/marker_UN.png</file>
+        <file>Images/itb_logo.png</file>
+        <file>QML/Marker.qml</file>
     </qresource>
 </RCC>

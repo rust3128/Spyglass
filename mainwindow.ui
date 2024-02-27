@@ -47,7 +47,7 @@
       </property>
       <property name="source">
        <url>
-        <string>qrc:/QML/QmlMap.qml</string>
+        <string/>
        </url>
       </property>
      </widget>

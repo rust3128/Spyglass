@@ -13,6 +13,7 @@ SOURCES += \
     AppParams/appparams.cpp \
     AppParams/dbsettingsdialog.cpp \
     LogginCategories/loggincategories.cpp \
+    MapData/markermodel.cpp \
     main.cpp \
     mainwindow.cpp
 
@@ -20,6 +21,7 @@ HEADERS += \
     AppParams/appparams.h \
     AppParams/dbsettingsdialog.h \
     LogginCategories/loggincategories.h \
+    MapData/markermodel.h \
     mainwindow.h
 
 FORMS += \

@@ -1,23 +1,34 @@
+// mainwindow.h
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QQmlContext>
+#include <QGeoCoordinate>
+#include "MapData/markermodel.h"
 
-QT_BEGIN_NAMESPACE
+
 namespace Ui {
 class MainWindow;
 }
-QT_END_NAMESPACE
 
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
 
 public:
-    MainWindow(QWidget *parent = nullptr);
+    explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+
+
+private:
+    void addMarkersObject(int client_id);
+
+
 
 private:
     Ui::MainWindow *ui;
+    MarkerModel marker_model;
 };
+
 #endif // MAINWINDOW_H

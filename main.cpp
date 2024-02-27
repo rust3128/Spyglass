@@ -54,7 +54,7 @@ int main(int argc, char *argv[])
 
     MainWindow w;
     qInfo(logInfo()) << "Зауск головного вікна програми.";
-    w.show();
+    w.showMaximized();
     return a.exec();
 }
 
