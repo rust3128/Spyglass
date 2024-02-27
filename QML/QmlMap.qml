@@ -30,13 +30,19 @@ Rectangle {
         property geoCoordinate startCentroid
 
         MapItemView {
-            model: marker_model
-            delegate: Marker {
-                coordinate: model.position
-                objectID: model.objectIDRole
+                model: marker_model
+                delegate: Marker {
+                    coordinate: model.position
+                    objectID: model.objectIDRole
 
+                    MouseArea {
+                        anchors.fill: parent
+                        onClicked: {
+                            console.log("Marker clicked. ObjectID:", model.objectIDRole);
+                        }
+                    }
+                }
             }
-        }
         PinchHandler {
             id: pinch
             target: map
