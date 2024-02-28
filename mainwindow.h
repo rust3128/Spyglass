@@ -19,7 +19,8 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
-
+public slots:
+    void handleMarkerClick(const QString &objectID);
 
 private:
     void addMarkersObject(int client_id);

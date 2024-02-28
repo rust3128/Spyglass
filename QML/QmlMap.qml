@@ -30,49 +30,57 @@ Rectangle {
         property geoCoordinate startCentroid
 
         MapItemView {
-                model: marker_model
-                delegate: Marker {
-                    coordinate: model.position
-                    objectID: model.objectIDRole
+            id: mapItemView
+            model: marker_model
+            delegate: Marker {
+                coordinate: model.position
+                objectID: model.objectIDRole
 
-                    MouseArea {
-                        anchors.fill: parent
-                        onClicked: {
-                            console.log("Marker clicked. ObjectID:", model.objectIDRole);
-                        }
+                MouseArea {
+                    anchors.fill: parent
+                    onClicked: {
+                        console.log("Marker clicked. ObjectID:", model.objectIDRole)
+                        console.log("mainwindow:", mainwindow)
+                        mainwindow.handleMarkerClick(model.objectIDRole);
                     }
                 }
             }
+        }
         PinchHandler {
             id: pinch
             target: map
             onActiveChanged: if (active) {
-                map.startCentroid = map.toCoordinate(pinch.centroid.position, false)
-            }
-            onScaleChanged: (delta) => {
-                map.zoomLevel += Math.log2(delta)
-                map.alignCoordinateToPoint(map.startCentroid, pinch.centroid.position)
-            }
-            onRotationChanged: (delta) => {
-                map.bearing -= delta
-                map.alignCoordinateToPoint(map.startCentroid, pinch.centroid.position)
-            }
+                                 map.startCentroid = map.toCoordinate(
+                                             pinch.centroid.position, false)
+                             }
+            onScaleChanged: delta => {
+                                map.zoomLevel += Math.log2(delta)
+                                map.alignCoordinateToPoint(
+                                    map.startCentroid, pinch.centroid.position)
+                            }
+            onRotationChanged: delta => {
+                                   map.bearing -= delta
+                                   map.alignCoordinateToPoint(
+                                       map.startCentroid,
+                                       pinch.centroid.position)
+                               }
             grabPermissions: PointerHandler.TakeOverForbidden
         }
 
         WheelHandler {
             id: wheel
-            acceptedDevices: Qt.platform.pluginName === "cocoa" || Qt.platform.pluginName === "wayland"
-                ? PointerDevice.Mouse | PointerDevice.TouchPad
-                : PointerDevice.Mouse
-            rotationScale: 1/120
+            acceptedDevices: Qt.platform.pluginName === "cocoa"
+                             || Qt.platform.pluginName
+                             === "wayland" ? PointerDevice.Mouse
+                                             | PointerDevice.TouchPad : PointerDevice.Mouse
+            rotationScale: 1 / 120
             property: "zoomLevel"
         }
 
         DragHandler {
             id: drag
             target: map
-            onTranslationChanged: (delta) => map.pan(-delta.x, -delta.y)
+            onTranslationChanged: delta => map.pan(-delta.x, -delta.y)
         }
 
         Shortcut {

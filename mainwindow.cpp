@@ -10,16 +10,24 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
-    QQmlContext *qmlContext = const_cast<QQmlContext*>(ui->quickWidgetMap->rootContext());
+    QQmlContext *qmlContext = ui->quickWidgetMap->rootContext();
     qmlContext->setContextProperty("marker_model", &marker_model);
+    qmlContext->setContextProperty("mainwindow", this); // Добавляем указатель на MainWindow в контекст QML
 
     ui->quickWidgetMap->setSource(QUrl("qrc:/QML/QmlMap.qml"));
     addMarkersObject(1);
+
+
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+void MainWindow::handleMarkerClick(const QString &objectID) {
+    // ваш код обработки клика по метке
+    qDebug() << "Data in MAINWINDOW. ObjectID:" << objectID;
 }
 
 void MainWindow::addMarkersObject(int client_id)
@@ -32,13 +40,14 @@ void MainWindow::addMarkersObject(int client_id)
         return;
     }
 
+
     int count = 0;
     while (q.next()) {
         QString objectID = q.value(0).toString();
         QGeoCoordinate coordinate(q.value(1).toDouble(), q.value(2).toDouble());
         marker_model.insert(count, coordinate, objectID);
+
         count++;
     }
 }
-
 
