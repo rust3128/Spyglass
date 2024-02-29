@@ -11,5 +11,7 @@
         <file>Images/marker_UN.png</file>
         <file>Images/itb_logo.png</file>
         <file>QML/Marker.qml</file>
+        <file>Images/marker_Marshal.png</file>
+        <file>Images/marker_default.png</file>
     </qresource>
 </RCC>

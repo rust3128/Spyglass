@@ -35,6 +35,7 @@ Rectangle {
             delegate: Marker {
                 coordinate: model.position
                 objectID: model.objectIDRole
+                clientID: model.clientIDRole // Додаємо передачу clientID в Marker
 
                 MouseArea {
                     anchors.fill: parent
@@ -46,6 +47,10 @@ Rectangle {
                 }
             }
         }
+
+
+
+
         PinchHandler {
             id: pinch
             target: map
