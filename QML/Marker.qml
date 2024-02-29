@@ -10,8 +10,8 @@ MapQuickItem {
     anchorPoint.y: marker.height
 
     sourceItem: Item {
-        width: 32
-        height: 32
+        width: 16
+        height: 16
 
         Image {
             source: "qrc:/Images/marker_UN.png"

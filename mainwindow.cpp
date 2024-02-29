@@ -1,9 +1,10 @@
 // mainwindow.cpp
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+
 #include <QSqlQuery>
 #include <QDebug>
-
+#include <QListWidgetItem>
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -13,10 +14,8 @@ MainWindow::MainWindow(QWidget *parent)
     QQmlContext *qmlContext = ui->quickWidgetMap->rootContext();
     qmlContext->setContextProperty("marker_model", &marker_model);
     qmlContext->setContextProperty("mainwindow", this); // Добавляем указатель на MainWindow в контекст QML
-
     ui->quickWidgetMap->setSource(QUrl("qrc:/QML/QmlMap.qml"));
-    addMarkersObject(1);
-
+    createUI();
 
 }
 
@@ -39,8 +38,6 @@ void MainWindow::addMarkersObject(int client_id)
         qCritical() << "Не можливо отримати координати АЗС";
         return;
     }
-
-
     int count = 0;
     while (q.next()) {
         QString objectID = q.value(0).toString();
@@ -51,3 +48,47 @@ void MainWindow::addMarkersObject(int client_id)
     }
 }
 
+void MainWindow::createUI()
+{
+    // Завантажуємо клієнтів із бази даних
+    QSqlQuery query("SELECT CLIENT_ID, NAME FROM CLIENTS");
+    while (query.next()) {
+        int clientID = query.value(0).toInt();
+        QString clientName = query.value(1).toString();
+
+        // Створюємо елемент списку для кожного клієнта
+        QListWidgetItem *item = new QListWidgetItem(clientName);
+        item->setFlags(item->flags() | Qt::ItemIsUserCheckable);  // Додаємо прапорець
+        item->setCheckState(Qt::Unchecked);  // Ставимо стан прапорця (без галочки)
+
+        item->setData(Qt::UserRole, clientID); // Зберігаємо ID клієнта як дані користувача
+
+        // Додаємо елемент до QListWidget
+        ui->listWidgetClients->addItem(item);
+    }
+}
+
+
+void MainWindow::on_listWidgetClients_itemChanged(QListWidgetItem *item)
+{
+    if (item->checkState() == Qt::Checked) {
+        // Викликати метод для відображення маркерів клієнта
+        int clientID = item->data(Qt::UserRole).toInt();
+        showMarkersForClient(clientID);
+    } else {
+        // Викликати метод для приховування маркерів клієнта
+        int clientID = item->data(Qt::UserRole).toInt();
+        hideMarkersForClient(clientID);
+    }
+}
+
+void MainWindow::showMarkersForClient(int clientID)
+{
+    // Ваш код для відображення маркерів клієнта
+    addMarkersObject(clientID);
+}
+
+void MainWindow::hideMarkersForClient(int clientID)
+{
+    // Ваш код для приховування маркерів клієнта
+}

@@ -26,7 +26,7 @@ Rectangle {
         anchors.fill: parent
         plugin: mapPlugin
         center: QtPositioning.coordinate(latitude, longitude)
-        zoomLevel: 5
+        zoomLevel: 10
         property geoCoordinate startCentroid
 
         MapItemView {
@@ -94,5 +94,22 @@ Rectangle {
             sequence: StandardKey.ZoomOut
             onActivated: map.zoomLevel = Math.round(map.zoomLevel - 1)
         }
+        // Додавання метки
+            MapQuickItem {
+              id: itbiMarker
+              coordinate: QtPositioning.coordinate(latitude, longitude)
+              anchorPoint.x: image.width / 2
+              anchorPoint.y: image.height
+
+              sourceItem: Item {
+                width: 16
+                height: 16
+
+                Image {
+                  id: image
+                  source: "qrc:/Images/itb_logo.png" // Замініть це на вашу іконку мітки
+                }
+              }
+            }
     }
 }
